@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>...</title>
+</head>
+<body class="p-2">
+
+    <form method="GET" action="/">
+
+        <label>
+            <span>Horizontal:</span>
+            <input
+                    class="w-14 mt-1 p-0 px-1 rounded border border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                    type="number"
+                    name="marginw"
+                    value="{{ vars.marginw }}"/>
+        </label>
+
+        <label>
+            <span>Vertical:</span>
+            <input
+                    class="w-14 mt-1 p-0 px-1 rounded border border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                    type="number"
+                    name="marginh"
+                    value="{{ vars.marginh }}"/>
+        </label>
+
+        <label>
+            <span>Brillo:</span>
+            <input
+                    class="w-14 mt-1 p-0 px-1 rounded border border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                    type="number"
+                    name="brightness"
+                    value="{{ vars.brightness }}"/>
+        </label>
+
+        <label>
+            <span>Contraste:</span>
+            <input
+                    class="w-14 mt-1 p-0 px-1 rounded border border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                    type="number"
+                    name="contrast"
+                    value="{{ vars.contrast }}"/>
+        </label>
+
+        <label>
+            <span>Offset:</span>
+            <input
+                    class="w-14 mt-1 p-0 px-1 rounded border border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                    type="number"
+                    name="offset"
+                    value="{{ vars.offset }}"/>
+        </label>
+
+        <label>
+            <span>Límite:</span>
+            <input
+                    class="w-14 mt-1 p-0 px-1 rounded border border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                    type="number"
+                    name="limit"
+                    value="{{ vars.limit }}"/>
+        </label>
+
+        <label>
+            <span>Guardar:</span>
+            <input
+                class="border mt-1 p-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                type="checkbox"
+                name="save"
+                value="1"
+                {{ vars.save == 1 ? "checked" }} />
+        </label>
+
+       &nbsp;<input type="Submit" value="Iniciar" class="mt-1 p-0 px-1 rounded border border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
+        <input type="Button" value="Generar" class="mt-1 p-0 px-1 rounded border border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 gen-button-all" />
+
+        <br/>
+
+        <label>
+            <span>Borde:</span>
+            <select name="border" class="w-44 mt-1 p-0 px-1 rounded border border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                {% for file in border %}
+                    <option value="{{ file }}" {{ vars.border == file ?  "selected" : null }}>{{ file }}</option>
+                {% endfor %}
+            </select>
+        </label>
+
+        <label>
+            <span>Path:</span>
+            <input
+                class="w-96 mt-1 p-0 px-1 rounded border border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                type="text"
+                name="path"
+                value="{{ vars.path }}"/>
+        </label>
+
+        &nbsp;<input type="button" value="Reset" class="reset mt-1 p-0 px-1 rounded border  border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
+
+        <div class="content grid grid-flow-row-dense grid-cols-5 grid-rows-3 mt-4">
+            {% for card in cards %}
+                {% include 'fullcard.html.twig' %}
+            {% endfor %}
+        </div>
+
+    </form>
+
+    <script src="./dist/app.js"></script>
+</body>
+</html>

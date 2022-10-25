@@ -1,0 +1,22 @@
+{
+    "name": "sonycrow/blankcards",
+    "version": "1.0.0",
+    "description": "Blank Cards",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Sonycrow",
+            "email": "sonyhqspam@gmail.com"
+        }
+    ],
+    "require": {
+        "twig/twig": "^3.0",
+        "ext-gd": "*"
+    },
+    "autoload": {
+        "classmap": [
+            "src/controllers",
+            "src/sections"
+        ]
+    }
+}
