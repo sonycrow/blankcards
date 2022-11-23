@@ -1,9 +1,4 @@
 <?php
-// Init
-set_time_limit(0);
-ini_set('error_reporting', E_ALL & ~E_NOTICE);
-define('ROOT', dirname(__DIR__));
-
 // Use
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
@@ -11,9 +6,14 @@ use Twig\Loader\FilesystemLoader;
 // Require
 require_once(ROOT . '/vendor/autoload.php');
 
+// Init
+set_time_limit(0);
+ini_set('error_reporting', E_ALL & ~E_NOTICE);
+define('ROOT', dirname(__DIR__));
+
 // Obtiene la sección
 try {
-    $sectionName = ucfirst(trim($_REQUEST['section'])) ? ucfirst(trim($_REQUEST['section'])) : 'Index';
+    $sectionName = ucfirst(trim($_REQUEST['section'] ?? '')) ?? 'Index';
     $section = new $sectionName($sectionName);
 }
 catch (Exception $ex) {

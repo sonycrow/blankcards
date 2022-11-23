@@ -17,7 +17,7 @@ class Index extends SectionController
     protected function getRequestVars(): array
     {
         return array(
-            "save"       => boolval($_REQUEST['save']) ? 1 : 0,
+            "save"       => boolval($_REQUEST['save'] ?? 0),
             "offset"     => $_REQUEST['offset'] ?? 1,
             "limit"      => $_REQUEST['limit'] ?? 999,
             "number"     => $_REQUEST['number'] ?? null,
@@ -26,7 +26,7 @@ class Index extends SectionController
             "brightness" => $_REQUEST['brightness'] ?? 0,
             "contrast"   => $_REQUEST['contrast'] ?? 0,
             "border"     => $_REQUEST['border'] ?? null,
-            "path"       => $_REQUEST['path']
+            "path"       => $_REQUEST['path'] ?? null
         );
     }
 
@@ -138,6 +138,7 @@ class Index extends SectionController
     private function getRawImage(string $borderFile, string $file, int $marginw, int $marginh, int $brightness, int $contrast, array $mcard, bool $save = false): string
     {
         // Información del archivo
+		$border = null;
         $info = pathinfo($file);
         $path = $info['dirname'];
         $ext  = $info['extension'];
@@ -157,6 +158,7 @@ class Index extends SectionController
         }
 
         // Creamos el icono
+        /*
         $icon = imagecreatefrompng(ROOT . "/src/assets/images/icon2.png");
         imagecopyresampled($img, $icon,
             10,10,
@@ -165,6 +167,7 @@ class Index extends SectionController
             72, 72
         );
         imagedestroy($icon);
+        */
 
         // Rotamos la carta
         $imgr = imagerotate($img, $mcard['r'], 0);
