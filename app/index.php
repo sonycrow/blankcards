@@ -3,17 +3,21 @@
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
-// Require
-require_once(ROOT . '/vendor/autoload.php');
-
 // Init
 set_time_limit(0);
 ini_set('error_reporting', E_ALL & ~E_NOTICE);
+ini_set('memory_limit', '1024M');
 define('ROOT', dirname(__DIR__));
+
+
+
+// Require
+require_once(ROOT . '/vendor/autoload.php');
 
 // Obtiene la sección
 try {
-    $sectionName = ucfirst(trim($_REQUEST['section'] ?? '')) ?? 'Index';
+    $sectionName = ucfirst(trim($_REQUEST['section'] ?? ''));
+    $sectionName = empty($sectionName) ? 'Index' : $sectionName;
     $section = new $sectionName($sectionName);
 }
 catch (Exception $ex) {

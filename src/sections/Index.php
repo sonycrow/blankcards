@@ -59,7 +59,7 @@ class Index extends SectionController
             return $cards;
         }
 
-        $validExt = array("jpg", "jpeg", "png");
+        $validExt = array("jpg", "jpeg", "png", "webp");
         $path     = $vars['path'] . "\\";
 
         $marginw  = $vars['marginw'];
@@ -148,10 +148,13 @@ class Index extends SectionController
         {
             case "jpg":
             case "jpeg":
-                $img = imagecreatefromjpeg($file);
+                $img = @imagecreatefromjpeg($file);
                 break;
             case "png":
-                $img = imagecreatefrompng($file);
+                $img = @imagecreatefrompng($file);
+                break;
+            case "webp":
+                $img = @imagecreatefromwebp($file);
                 break;
             default:
                 throw new Exception("Tipo de fichero desconocido {$file}");
